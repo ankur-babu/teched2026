@@ -1,0 +1,428 @@
+{
+  "servers": {
+    "api-product-srv": {
+      "mcp_server_name": "sap.mcp/api_product_srv",
+      "description": "MCP server for the api_product_srv service - SAP S/4HANA Product Master (A2X) read-only tools",
+      "tools": {
+        "get_metadata_api_product_srv": {
+          "description": "Retrieves OData service metadata for API_PRODUCT_SRV",
+          "input_schema": {"type": "object", "properties": {}, "required": []},
+          "mock_response": {"$metadata": "<edmx:Edmx Version=\"1.0\"><edmx:DataServices m:DataServiceVersion=\"2.0\"/></edmx:Edmx>"}
+        },
+        "batch_for_api_product_srv": {
+          "description": "Executes OData batch requests for API_PRODUCT_SRV",
+          "input_schema": {"type": "object", "properties": {"requests": {"type": "array"}}, "required": []},
+          "mock_response": {"responses": []}
+        },
+        "list_a_product_for_api_product_srv": {
+          "description": "Retrieves a list of products from SAP S/4HANA",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": {"type": "string", "description": "Maximum number of records to return"},
+              "$skip": {"type": "string", "description": "Number of records to skip"},
+              "$filter": {"type": "string", "description": "OData filter expression"},
+              "$select": {"type": "string", "description": "Fields to return"},
+              "$orderby": {"type": "string", "description": "Sort order"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "P-100",
+                "ProductType": "FERT",
+                "BaseUnit": "EA",
+                "ProductGroup": "A001",
+                "Division": "00",
+                "GrossWeight": "1.500",
+                "WeightUnit": "KG",
+                "NetWeight": "1.200",
+                "IsMarkedForDeletion": false,
+                "ProductOldID": "OLD-P100",
+                "CreationDate": "/Date(1672531200000)/",
+                "LastChangeDate": "/Date(1714521600000)/"
+              },
+              {
+                "Product": "MZ-FG-R200",
+                "ProductType": "FERT",
+                "BaseUnit": "PC",
+                "ProductGroup": "A002",
+                "Division": "01",
+                "GrossWeight": "5.000",
+                "WeightUnit": "KG",
+                "NetWeight": "4.500",
+                "IsMarkedForDeletion": false,
+                "ProductOldID": "",
+                "CreationDate": "/Date(1680307200000)/",
+                "LastChangeDate": "/Date(1714521600000)/"
+              }
+            ]
+          }
+        },
+        "get_a_product_for_api_product_srv": {
+          "description": "Retrieves a single product by product ID",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "product": {"type": "string", "description": "Product ID"},
+              "select": {"type": "string", "description": "Fields to return"},
+              "expand": {"type": "string", "description": "Navigation properties to expand"}
+            },
+            "required": ["product"]
+          },
+          "mock_response": {
+            "Product": "P-100",
+            "ProductType": "FERT",
+            "BaseUnit": "EA",
+            "ProductGroup": "A001",
+            "Division": "00",
+            "GrossWeight": "1.500",
+            "WeightUnit": "KG",
+            "NetWeight": "1.200",
+            "IsMarkedForDeletion": false,
+            "CreationDate": "/Date(1672531200000)/",
+            "LastChangeDate": "/Date(1714521600000)/"
+          }
+        },
+        "count_a_product_for_api_product_srv": {
+          "description": "Returns the count of products matching the filter",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 42}
+        },
+        "list_a_productdescription_for_api_product_srv": {
+          "description": "Retrieves product descriptions in multiple languages",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string"},
+              "$select": {"type": "string"},
+              "$top": {"type": "string"},
+              "$skip": {"type": "string"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "Language": "EN", "ProductDescription": "Laptop Computer 15 inch"},
+              {"Product": "P-100", "Language": "DE", "ProductDescription": "Laptop-Computer 15 Zoll"}
+            ]
+          }
+        },
+        "get_a_productdescription_for_api_product_srv": {
+          "description": "Retrieves product description by product and language",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "product": {"type": "string"},
+              "language": {"type": "string"}
+            },
+            "required": ["product", "language"]
+          },
+          "mock_response": {"Product": "P-100", "Language": "EN", "ProductDescription": "Laptop Computer 15 inch"}
+        },
+        "count_a_productdescription_for_api_product_srv": {
+          "description": "Returns count of product descriptions",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 5}
+        },
+        "list_a_productbasictext_for_api_product_srv": {
+          "description": "Retrieves basic text for products",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "Language": "EN", "LongText": "High-performance laptop for business use. Features include 16GB RAM, 512GB SSD."}
+            ]
+          }
+        },
+        "get_a_productbasictext_for_api_product_srv": {
+          "description": "Retrieves basic text for a specific product and language",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "language": {"type": "string"}}, "required": ["product", "language"]},
+          "mock_response": {"Product": "P-100", "Language": "EN", "LongText": "High-performance laptop for business use. Features include 16GB RAM, 512GB SSD."}
+        },
+        "count_a_productbasictext_for_api_product_srv": {
+          "description": "Returns count of product basic texts",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 2}
+        },
+        "list_a_productsales_for_api_product_srv": {
+          "description": "Retrieves product sales data",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "SalesOrganization": "1000", "DistributionChannel": "10", "SalesDivision": "00", "ItemCategoryGroup": "NORM"}
+            ]
+          }
+        },
+        "get_a_productsales_for_api_product_srv": {
+          "description": "Retrieves product sales data by key",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "salesorganization": {"type": "string"}, "distributionchannel": {"type": "string"}}, "required": ["product", "salesorganization", "distributionchannel"]},
+          "mock_response": {"Product": "P-100", "SalesOrganization": "1000", "DistributionChannel": "10", "ItemCategoryGroup": "NORM"}
+        },
+        "count_a_productsales_for_api_product_srv": {
+          "description": "Returns count of product sales entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 3}
+        },
+        "list_a_productsalesdelivery_for_api_product_srv": {
+          "description": "Retrieves product sales delivery data including packaging",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "SalesOrganization": "1000", "DistributionChannel": "10", "DeliveryUnit": "1", "DeliveryUnitUnit": "EA", "MinDeliveryQtyInBaseUnit": "1.000", "BaseUnit": "EA"}
+            ]
+          }
+        },
+        "get_a_productsalesdelivery_for_api_product_srv": {
+          "description": "Retrieves product sales delivery by key",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "salesorganization": {"type": "string"}, "distributionchannel": {"type": "string"}}, "required": ["product"]},
+          "mock_response": {"Product": "P-100", "SalesOrganization": "1000", "DistributionChannel": "10", "DeliveryUnit": "1", "DeliveryUnitUnit": "EA", "BaseUnit": "EA"}
+        },
+        "count_a_productsalesdelivery_for_api_product_srv": {
+          "description": "Returns count of product sales delivery entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 1}
+        },
+        "list_a_productunitsofmeasure_for_api_product_srv": {
+          "description": "Retrieves units of measure for products",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "AlternativeUnit": "EA", "QuantityNumerator": "1.000", "QuantityDenominator": "1.000", "GrossWeight": "1.500", "NetWeight": "1.200", "WeightUnit": "KG"},
+              {"Product": "P-100", "AlternativeUnit": "CTN", "QuantityNumerator": "10.000", "QuantityDenominator": "1.000", "GrossWeight": "16.000", "NetWeight": "13.000", "WeightUnit": "KG"}
+            ]
+          }
+        },
+        "get_a_productunitsofmeasure_for_api_product_srv": {
+          "description": "Retrieves unit of measure for a specific product and unit",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "alternativeunit": {"type": "string"}}, "required": ["product", "alternativeunit"]},
+          "mock_response": {"Product": "P-100", "AlternativeUnit": "EA", "QuantityNumerator": "1.000", "QuantityDenominator": "1.000", "GrossWeight": "1.500", "WeightUnit": "KG"}
+        },
+        "count_a_productunitsofmeasure_for_api_product_srv": {
+          "description": "Returns count of product units of measure",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 2}
+        }
+      }
+    },
+    "api-clfn-product-srv": {
+      "mcp_server_name": "sap.mcp/api_clfn_product_srv",
+      "description": "MCP server for the api_clfn_product_srv service - SAP S/4HANA Product Classification read-only tools",
+      "tools": {
+        "get_metadata_api_clfn_product_srv": {
+          "description": "Retrieves OData service metadata for API_CLFN_PRODUCT_SRV",
+          "input_schema": {"type": "object", "properties": {}, "required": []},
+          "mock_response": {"$metadata": "<edmx:Edmx Version=\"1.0\"><edmx:DataServices m:DataServiceVersion=\"2.0\"/></edmx:Edmx>"}
+        },
+        "batch_for_api_clfn_product_srv": {
+          "description": "Executes OData batch requests for API_CLFN_PRODUCT_SRV",
+          "input_schema": {"type": "object", "properties": {"requests": {"type": "array"}}, "required": []},
+          "mock_response": {"responses": []}
+        },
+        "list_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Retrieves product classification assignments",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string", "description": "OData filter (e.g., Product eq 'P-100')"},
+              "$select": {"type": "string"},
+              "$top": {"type": "string"},
+              "$expand": {"type": "string"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "P-100",
+                "ClassType": "001",
+                "ClassName": "LAPTOPS",
+                "ClassInternalID": "0000000042",
+                "ProductClassAssignmentStatus": "1"
+              },
+              {
+                "Product": "P-100",
+                "ClassType": "300",
+                "ClassName": "ELECTRONICS",
+                "ClassInternalID": "0000000015",
+                "ProductClassAssignmentStatus": "1"
+              }
+            ]
+          }
+        },
+        "get_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Retrieves classification for a specific product, class type, and class",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "product": {"type": "string", "description": "Product ID"},
+              "classtype": {"type": "string", "description": "Class type"},
+              "classinternalid": {"type": "string", "description": "Class internal ID"}
+            },
+            "required": ["product", "classtype", "classinternalid"]
+          },
+          "mock_response": {
+            "Product": "P-100",
+            "ClassType": "001",
+            "ClassName": "LAPTOPS",
+            "ClassInternalID": "0000000042",
+            "ProductClassAssignmentStatus": "1"
+          }
+        },
+        "count_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Returns count of product classification entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 2}
+        }
+      }
+    },
+    "sap-self-avail": {
+      "mcp_server_name": "sap.mcp/sap_self",
+      "description": "MCP server for product availability info - SAP S/4HANA CE_API_PRODUCT_AVAILY_INFO_0001 read-only tools",
+      "tools": {
+        "get_metadata_sap_self": {
+          "description": "Retrieves OData service metadata for product availability service",
+          "input_schema": {"type": "object", "properties": {}, "required": []},
+          "mock_response": {"$metadata": "<edmx:Edmx Version=\"1.0\"><edmx:DataServices m:DataServiceVersion=\"2.0\"/></edmx:Edmx>"}
+        },
+        "batch_for_sap_self": {
+          "description": "Executes OData batch requests for availability service",
+          "input_schema": {"type": "object", "properties": {"requests": {"type": "array"}}, "required": []},
+          "mock_response": {"responses": []}
+        },
+        "list_productstoragelocation_for_sap_self": {
+          "description": "Retrieves stock by storage location for a product",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": {"type": "string", "description": "Filter e.g. Product eq 'P-100' and Plant eq '1000'"},
+              "$top": {"type": "string"},
+              "$select": {"type": "string"}
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "P-100",
+                "Plant": "1000",
+                "StorageLocation": "0001",
+                "MatlWrhsStkQtyInMatlBaseUnit": "250.000",
+                "BaseUnit": "EA"
+              },
+              {
+                "Product": "P-100",
+                "Plant": "1000",
+                "StorageLocation": "0002",
+                "MatlWrhsStkQtyInMatlBaseUnit": "120.000",
+                "BaseUnit": "EA"
+              }
+            ]
+          }
+        },
+        "get_productstoragelocation_for_sap_self": {
+          "description": "Retrieves stock for a specific product, plant, and storage location",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "product": {"type": "string"},
+              "plant": {"type": "string"},
+              "storagelocation": {"type": "string"}
+            },
+            "required": ["product", "plant", "storagelocation"]
+          },
+          "mock_response": {
+            "Product": "P-100",
+            "Plant": "1000",
+            "StorageLocation": "0001",
+            "MatlWrhsStkQtyInMatlBaseUnit": "250.000",
+            "BaseUnit": "EA"
+          }
+        },
+        "count_productstoragelocation_for_sap_self": {
+          "description": "Returns count of product storage location entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 2}
+        },
+        "list_productmrparea_for_sap_self": {
+          "description": "Retrieves MRP area stock data for products",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {
+            "results": [
+              {"Product": "P-100", "Plant": "1000", "MRPArea": "1000", "MRPAreaCategory": "01", "AvailableStock": "370.000", "BaseUnit": "EA"}
+            ]
+          }
+        },
+        "get_productmrparea_for_sap_self": {
+          "description": "Retrieves MRP area stock for a specific product, plant, and MRP area",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "plant": {"type": "string"}, "mrparea": {"type": "string"}}, "required": ["product", "plant", "mrparea"]},
+          "mock_response": {"Product": "P-100", "Plant": "1000", "MRPArea": "1000", "AvailableStock": "370.000", "BaseUnit": "EA"}
+        },
+        "count_productmrparea_for_sap_self": {
+          "description": "Returns count of product MRP area entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 1}
+        },
+        "list_productmrpareabatch_for_sap_self": {
+          "description": "Retrieves batch-level MRP area stock data",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {"results": [{"Product": "P-100", "Plant": "1000", "Batch": "B001", "AvailableStock": "50.000", "BaseUnit": "EA"}]}
+        },
+        "get_productmrpareabatch_for_sap_self": {
+          "description": "Retrieves batch-level MRP area stock by key",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "plant": {"type": "string"}, "batch": {"type": "string"}}, "required": ["product", "plant", "batch"]},
+          "mock_response": {"Product": "P-100", "Plant": "1000", "Batch": "B001", "AvailableStock": "50.000", "BaseUnit": "EA"}
+        },
+        "count_productmrpareabatch_for_sap_self": {
+          "description": "Returns count of batch MRP area entries",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 1}
+        },
+        "list_productassignedsoldtoparty_for_sap_self": {
+          "description": "Retrieves sold-to parties assigned to products",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {"results": [{"Product": "P-100", "SoldToParty": "CUST-001", "SalesOrganization": "1000", "DistributionChannel": "10"}]}
+        },
+        "get_productassignedsoldtoparty_for_sap_self": {
+          "description": "Retrieves a sold-to party assignment by key",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "soldtoparty": {"type": "string"}}, "required": ["product", "soldtoparty"]},
+          "mock_response": {"Product": "P-100", "SoldToParty": "CUST-001", "SalesOrganization": "1000"}
+        },
+        "count_productassignedsoldtoparty_for_sap_self": {
+          "description": "Returns count of sold-to party assignments",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 1}
+        },
+        "list_productassignedsalesdocitem_for_sap_self": {
+          "description": "Retrieves sales document items assigned to products",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}, "$top": {"type": "string"}}, "required": []},
+          "mock_response": {"results": [{"Product": "P-100", "SalesDocument": "4500000001", "SalesDocumentItem": "10", "RequestedQuantity": "5.000", "BaseUnit": "EA"}]}
+        },
+        "get_productassignedsalesdocitem_for_sap_self": {
+          "description": "Retrieves a sales document item assignment by key",
+          "input_schema": {"type": "object", "properties": {"product": {"type": "string"}, "salesdocument": {"type": "string"}, "salesdocumentitem": {"type": "string"}}, "required": ["product", "salesdocument", "salesdocumentitem"]},
+          "mock_response": {"Product": "P-100", "SalesDocument": "4500000001", "SalesDocumentItem": "10", "RequestedQuantity": "5.000"}
+        },
+        "count_productassignedsalesdocitem_for_sap_self": {
+          "description": "Returns count of sales document item assignments",
+          "input_schema": {"type": "object", "properties": {"$filter": {"type": "string"}}, "required": []},
+          "mock_response": {"value": 1}
+        }
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_for_agent": "product-master-data-agent",
+    "mock_mode": true,
+    "deterministic": true,
+    "total_servers": 3,
+    "total_tools": 42,
+    "generated_from": [
+      "assets/sap-s4-product-srv-mcp-server/mcp-translation/translation.json",
+      "assets/sap-s4-clfn-product-srv-mcp-server/mcp-translation/translation.json",
+      "assets/sap-s4-ce-api-product-availy-info-0001-mcp-server/mcp-translation/translation.json"
+    ],
+    "generation_date": "2026-10-26"
+  }
+}
